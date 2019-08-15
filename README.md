@@ -15,7 +15,7 @@ docker run --name omp \
 ```
 
 Now just access http://127.0.0.1:8080/index/install and continue through web installation and finish your install and configs.
-To install automatically when the container init you can use **OMP_CLI_INSTALL=1**, and use the others environment variables to automatize the process.
+To install automatically when the container init you can use **PKP_CLI_INSTALL=1**, and use the others environment variables to automatize the process.
 
 ## Versions
 
@@ -26,11 +26,11 @@ All version tags can be found at [Docker Hub Tags tab](https://hub.docker.com/r/
 |  NAME  | Default | Info |
 |:------:|:-------:|:-------:|
 |   SERVERNAME  | localhost | Used to generate httpd.conf and certificate |
-| OMP_CLI_INSTALL |  0  | Used to install omp automatically when start container |
-|   OMP_DB_HOST  | localhost | Database host |
-|   OMP_DB_USER  | omp | Database username |
-|   OMP_DB_PASSWORD  | omp | Database password |
-|   OMP_DB_NAME  | omp | Database name |
+| PKP_CLI_INSTALL |  0  | Used to install omp automatically when start container |
+|   PKP_DB_HOST  | localhost | Database host |
+|   PKP_DB_USER  | omp | Database username |
+|   PKP_DB_PASSWORD  | omp | Database password |
+|   PKP_DB_NAME  | omp | Database name |
 
 ## Special Volumes
 

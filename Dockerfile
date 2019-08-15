@@ -106,13 +106,13 @@ WORKDIR /var/www/html
 COPY --from=builder /tmp/ /var/www/html/
 
 ENV OMP_VERSION="3_1_2-1"       \
-        OMP_CLI_INSTALL="0"         \
-        OMP_DB_HOST="localhost"     \
-        OMP_DB_USER="omp"           \
-        OMP_DB_PASSWORD="omp"       \
-        OMP_DB_NAME="omp"           \
-        OMP_WEB_CONF="/etc/apache2/conf.d/omp.conf" \
-        OMP_CONF="/var/www/html/config.inc.php" \
+        PKP_CLI_INSTALL="0"         \
+        PKP_DB_HOST="localhost"     \
+        PKP_DB_USER="omp"           \
+        PKP_DB_PASSWORD="omp"       \
+        PKP_DB_NAME="omp"           \
+        PKP_WEB_CONF="/etc/apache2/conf.d/omp.conf" \
+        PKP_CONF="/var/www/html/config.inc.php" \
         SERVERNAME="localhost" \
         HTTPS="on" \
         PACKAGES="supervisor dcron apache2 apache2-ssl apache2-utils file \

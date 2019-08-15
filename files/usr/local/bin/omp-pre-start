@@ -5,10 +5,10 @@ PEM_PATH="/etc/ssl/apache2/server.pem"
 
 echo "[OMP Pre-Start] Enforcing configs..."
 
-sed -i -e "s/www.example.com/${SERVERNAME}/g" $OMP_WEB_CONF
+sed -i -e "s/www.example.com/${SERVERNAME}/g" $PKP_WEB_CONF
 sed -i -e "s/^#ServerName.*/ServerName ${SERVERNAME}/" /etc/apache2/httpd.conf
-sed -i -e "s/restful_urls = Off/restful_urls = On/g" $OMP_CONF
-sed -i -e "s/enable_cdn = On/enable_cdn = Off/g" $OMP_CONF
+sed -i -e "s/restful_urls = Off/restful_urls = On/g" $PKP_CONF
+sed -i -e "s/enable_cdn = On/enable_cdn = Off/g" $PKP_CONF
 
 # Generate a cert based on ServerName
 if [ ! -f $KEY_PATH ] ||
@@ -17,7 +17,7 @@ if [ ! -f $KEY_PATH ] ||
     openssl req -x509 -nodes -days 1460 -newkey rsa:2048 -keyout $KEY_PATH -out $PEM_PATH -subj "/CN=$SERVERNAME/"
 fi
 
-if [[ ${OMP_CLI_INSTALL} == "1" ]] &&
-    grep -q 'installed = Off' $OMP_CONF ; then
+if [[ ${PKP_CLI_INSTALL} == "1" ]] &&
+    grep -q 'installed = Off' $PKP_CONF ; then
     omp-cli-install
 fi
