@@ -90,7 +90,6 @@ RUN apk add --update --no-cache $PACKAGES && \
         # Install Composer Deps and NPM
         composer update -d lib/pkp --no-dev && \
         composer install -d plugins/paymethod/paypal --no-dev && \
-        composer install -d plugins/generic/citationStyleLanguage --no-dev && \
         npm install -y && npm run build && \
         # Clear the base project
         cp config.TEMPLATE.inc.php config.inc.php && \    
