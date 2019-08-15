@@ -5,7 +5,7 @@ FROM php:7.2-alpine as builder
 LABEL maintainer="Lucas G. Diedrich <lucas.diedrich@gmail.com>"
 WORKDIR /tmp/
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
-        OJS_VERSION="3_1_2-1" \
+        OMP_VERSION="3_1_2-1" \
         PACKAGES="curl nodejs npm git" \
         EXCLUDE="dbscripts/xml/data/locale/en_US/sample.xml     \
         dbscripts/xml/data/sample.xml					\
@@ -100,7 +100,7 @@ RUN apk add --update --no-cache $PACKAGES && \
         # Configure and download code from git
         git config --global url.https://.insteadOf git:// && \
         git config --global advice.detachedHead false && \
-        git clone --depth 1 --single-branch --branch $OJS_VERSION --progress https://github.com/pkp/ojs.git . && \
+        git clone --depth 1 --single-branch --branch $OMP_VERSION --progress https://github.com/pkp/omp.git . && \
         git submodule update --init --recursive >/dev/null && \
         # Install Composer Deps and NPM
         composer update -d lib/pkp --no-dev && \
@@ -120,14 +120,14 @@ LABEL maintainer="Lucas G. Diedrich <lucas.diedrich@gmail.com>"
 WORKDIR /var/www/html
 COPY --from=builder /tmp/ /var/www/html/
 
-ENV OJS_VERSION="3_1_2-1"       \
-        OJS_CLI_INSTALL="0"         \
-        OJS_DB_HOST="localhost"     \
-        OJS_DB_USER="ojs"           \
-        OJS_DB_PASSWORD="ojs"       \
-        OJS_DB_NAME="ojs"           \
-        OJS_WEB_CONF="/etc/apache2/conf.d/ojs.conf" \
-        OJS_CONF="/var/www/html/config.inc.php" \
+ENV OMP_VERSION="3_1_2-1"       \
+        OMP_CLI_INSTALL="0"         \
+        OMP_DB_HOST="localhost"     \
+        OMP_DB_USER="omp"           \
+        OMP_DB_PASSWORD="omp"       \
+        OMP_DB_NAME="omp"           \
+        OMP_WEB_CONF="/etc/apache2/conf.d/omp.conf" \
+        OMP_CONF="/var/www/html/config.inc.php" \
         SERVERNAME="localhost" \
         HTTPS="on" \
         PACKAGES="supervisor dcron apache2 apache2-ssl apache2-utils file \

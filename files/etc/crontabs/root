@@ -1,2 +1,2 @@
-# Crontab for OJS Schedule tasks
-0 * * * *   ojs-run-scheduled
+# Crontab for OMP Schedule tasks
+0 * * * *   omp-run-scheduled

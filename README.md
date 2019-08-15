@@ -1,36 +1,36 @@
-# OJS (Open Journal Systems) - PKP - Container/Docker
+# OMP (Open Monograph Press) - PKP - Container/Docker
 
-Open Journal Systems (OJS) is a journal management and publishing system that has been developed by the Public Knowledge Project through its federally funded efforts to expand and improve access to research.
+Open Monograph Press is an open source software platform for managing the editorial workflow required to see monographs, edited volumes and, scholarly editions through internal and external review, editing, cataloguing, production, and publication. OMP can operate, as well, as a press website with catalog, distribution, and sales capacities.
 
-This container was built based on [buildpkg.sh](https://github.com/pkp/ojs/blob/ojs-3_1_0-1/tools/buildpkg.sh) from own pkp-ojs, so all the dependencies are already included and the software is ready to run. Also is built on top of [Alpine Linux](https://alpinelinux.org/) which is incredible lightweight.
+This container was built based on [buildpkg.sh](https://github.com/pkp/ocs/blob/ocs-3_1_0-1/tools/buildpkg.sh) from own pkp-ocs, so all the dependencies are already included and the software is ready to run. Also is built on top of [Alpine Linux](https://alpinelinux.org/) which is incredible lightweight.
 
 ## How to use
 
 ```bash
-docker run --name ojs \
+docker run --name omp \
            -p 8080:80 -p 8443:443 \
            -e SERVERNAME=... \
            -v /etc/localtime:/etc/localtime \
-           -d lucasdiedrich/ojs
+           -d lucasdiedrich/omp
 ```
 
 Now just access http://127.0.0.1:8080/index/install and continue through web installation and finish your install and configs.
-To install automatically when the container init you can use **OJS_CLI_INSTALL=1**, and use the others environment variables to automatize the process.
+To install automatically when the container init you can use **OMP_CLI_INSTALL=1**, and use the others environment variables to automatize the process.
 
 ## Versions
 
-All version tags can be found at [Docker Hub Tags tab](https://hub.docker.com/r/lucasdiedrich/ojs/tags/).
+All version tags can be found at [Docker Hub Tags tab](https://hub.docker.com/r/lucasdiedrich/omp/tags/).
 
 ## Environment Variables
 
 |  NAME  | Default | Info |
 |:------:|:-------:|:-------:|
 |   SERVERNAME  | localhost | Used to generate httpd.conf and certificate |
-| OJS_CLI_INSTALL |  0  | Used to install ojs automatically when start container |
-|   OJS_DB_HOST  | localhost | Database host |
-|   OJS_DB_USER  | ojs | Database username |
-|   OJS_DB_PASSWORD  | ojs | Database password |
-|   OJS_DB_NAME  | ojs | Database name |
+| OMP_CLI_INSTALL |  0  | Used to install omp automatically when start container |
+|   OMP_DB_HOST  | localhost | Database host |
+|   OMP_DB_USER  | omp | Database username |
+|   OMP_DB_PASSWORD  | omp | Database password |
+|   OMP_DB_NAME  | omp | Database name |
 
 ## Special Volumes
 
@@ -46,15 +46,15 @@ All version tags can be found at [Docker Hub Tags tab](https://hub.docker.com/r/
 | /usr/local/etc/php/conf.d/custom.ini  | PHP5 custom.init |
 | /etc/localtime  | To set container clock as the host clock |
 
-## Upgrading OJS
+## Upgrading OMP
 
-The update process is easy and straightforward, once the container running the new version just run the exec command below, and it will upgrade the OJS database and files.
+The update process is easy and straightforward, once the container running the new version just run the exec command below, and it will upgrade the OMP database and files.
 
 ```bash
-docker exec -it ojs /usr/local/bin/ojs-upgrade
+docker exec -it omp /usr/local/bin/omp-upgrade
 ```
 
-After the upgrade diff your **config.inc.php** with the version of the new OJS version, in some new version new variables can be added to the file.
+After the upgrade diff your **config.inc.php** with the version of the new OMP version, in some new version new variables can be added to the file.
 
 ## Docker-compose
 
@@ -74,7 +74,7 @@ By default the restful_url are enable and apache its already configured, so ther
 
 ## php.ini
 
-Any custom php configuration can be made at */etc/php7/conf.d/0-ojs.ini*, there are some optimized variables already, you can check at [php.ini](./files/php.ini).
+Any custom php configuration can be made at */etc/php7/conf.d/0-omp.ini*, there are some optimized variables already, you can check at [php.ini](./files/php.ini).
 
 ## License
 

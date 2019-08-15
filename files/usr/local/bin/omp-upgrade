@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "[OMP Upgrade] Changing to installed off"
+sed -i '/^installed/c\installed = Off' $OMP_CONF
+
+echo "[OMP Upgrade] Upgrading..."
+php /var/www/html/tools/upgrade.php upgrade
+
+echo "[OMP Upgrade] Changing to installed on"
+sed -i '/^installed/c\installed = On' $OMP_CONF
+
+echo "[OMP Upgrade] Upgrade is done, please restart the container."

@@ -3,13 +3,13 @@ services:
   db:                      
     image: mariadb:10.2    
     env_file: .env
-    container_name: ${COMPOSE_PROJECT_NAME:-ojs}_db 
+    container_name: ${COMPOSE_PROJECT_NAME:-omp}_db 
     restart: always
-  ojs:                    
-    image: lucasdiedrich/ojs:php7-test
+  omp:                    
+    image: lucasdiedrich/omp:master
     env_file: .env
-    container_name: ${COMPOSE_PROJECT_NAME:-pkp}_ojs
-    hostname: ${COMPOSE_PROJECT_NAME:-pkp_ojs} 
+    container_name: ${COMPOSE_PROJECT_NAME:-pkp}_omp
+    hostname: ${COMPOSE_PROJECT_NAME:-pkp_omp} 
     restart: always
     ports:
       - "${HTTP_PORT:-8085}:80" 
@@ -19,7 +19,7 @@ services:
     #- ./files/private:/var/www/files 
     #- ./files/public:/var/www/html/public  
     #- ./files/logs:/var/log/apache2   
-    #- ./config/ojs.config.inc.php:/var/www/html/config.inc.php  
+    #- ./config/omp.config.inc.php:/var/www/html/config.inc.php  
     #- ./config/apache.htaccess:/var/www/html/.htaccess  
     #- ./config/php.custom.ini:/usr/local/etc/php/conf.d/custom.ini
     depends_on: 
@@ -34,7 +34,7 @@ services:
       # - proxy
       
 # Adminer
-# Usefull when you need to fix stuff in your ojs.
+# Usefull when you need to fix stuff in your omp.
 #  adminer:
 #    image: adminer
 #    ports:
