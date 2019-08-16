@@ -86,6 +86,7 @@ RUN apk add --update --no-cache $PACKAGES && \
         git config --global url.https://.insteadOf git:// && \
         git config --global advice.detachedHead false && \
         git clone --depth 1 --single-branch --branch $OMP_VERSION --progress https://github.com/pkp/omp.git . && \
+        git checkout -q $OMP_VERSION || exit 1 && \
         git submodule update --init --recursive >/dev/null && \
         # Install Composer Deps and NPM
         composer --working-dir=lib/pkp update --no-dev  && \
