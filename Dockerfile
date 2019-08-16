@@ -88,8 +88,8 @@ RUN apk add --update --no-cache $PACKAGES && \
         git clone --depth 1 --single-branch --branch $OMP_VERSION --progress https://github.com/pkp/omp.git . && \
         git submodule update --init --recursive >/dev/null && \
         # Install Composer Deps and NPM
-        composer update -d lib/pkp --no-dev && \
-        composer install -d plugins/paymethod/paypal --no-dev && \
+        composer --working-dir=lib/pkp update --no-dev  && \
+        composer --working-dir=plugins/paymethod/paypal update --no-dev && \
         npm install -y && npm run build && \
         # Clear the base project
         cp config.TEMPLATE.inc.php config.inc.php && \    
